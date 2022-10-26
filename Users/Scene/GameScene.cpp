@@ -81,6 +81,15 @@ void GameScene::Initialize()
 	goalModel_->Initialize();
 
 	viewProjection = resultCamera_->GetViewProjection();
+
+	numTexHandle_ = TextureManager::GetInstance()->LoadTexture(L"Resources/Number.png");
+	numSprite = std::make_unique<Sprite2D>();
+	numSprite->Initialize();
+
+	numTransform[0].Initialize();
+	numTransform[0].translation = { 300,100,0 };
+	numTransform[1].Initialize();
+	numTransform[2].Initialize();
 }
 
 void GameScene::Update()
@@ -236,7 +245,11 @@ void GameScene::Draw()
 		break;
 	}
 	particle_->Draw();
+	{
+		float f = 7;
 
+		numSprite->AnimationDraw(numTexHandle_, numTransform[0], 32, 32, f, 1);
+	}
 }
 
 GameScene* GameScene::GetInstance()

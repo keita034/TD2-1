@@ -71,7 +71,7 @@ void Sprite2D::AnimationDraw(TextureData& textureData, Transform& transform, uin
 	size_t width = static_cast<size_t>(radiusX) * 2;
 	size_t height = static_cast<size_t>(radiusY) * 2;
 
-	float widthU = static_cast<float>(width / textureData.width);
+	float widthU = static_cast<float>(width) / textureData.width;
 
 	//‰æ‘œ‚Ì”¼•ª‚ÌƒTƒCƒY
 	float halfW = static_cast<float>(width);

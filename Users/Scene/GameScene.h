@@ -65,6 +65,10 @@ private: // メンバ変数
 	TextureData textureHandle_;
 	Transform transform_;
 
+	TextureData numTexHandle_;
+	std::array<Transform, 3> numTransform;
+	std::unique_ptr<Sprite2D> numSprite;
+
 	std::unique_ptr<Light> light;
 	EngineMathF::Vector4 lightColor = { 1, 1, 1, 1 };
 
