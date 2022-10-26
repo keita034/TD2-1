@@ -92,25 +92,49 @@ HRESULT DirectX12Core::InitializeDXGIDevice()
 		return result;
 	}
 
-	//アダプター列挙用
-	std::vector<Microsoft::WRL::ComPtr<IDXGIAdapter4>> adapters;
+	//アダプターの列挙用
+	std::vector < IDXGIAdapter4*>adapters;
 	//ここに特定の名前を持つアダプターオブジェクトが入る
-	Microsoft::WRL::ComPtr<IDXGIAdapter4> tmpAdapter;
+	IDXGIAdapter4* tmpAdapter = nullptr;
 
-	//パフォーマンスが高いのもから全て列挙
-	for (UINT i = 0; dxgiFactory->EnumAdapterByGpuPreference(i, DXGI_GPU_PREFERENCE_HIGH_PERFORMANCE, IID_PPV_ARGS(tmpAdapter.ReleaseAndGetAddressOf())) != DXGI_ERROR_NOT_FOUND; i++)
+	//パフォーマンスが高いものから順に、すべてのアダプターを列挙する
+	for (UINT i = 0;
+		dxgiFactory->EnumAdapterByGpuPreference(i,
+			DXGI_GPU_PREFERENCE_HIGH_PERFORMANCE,
+			IID_PPV_ARGS(&tmpAdapter)) != DXGI_ERROR_NOT_FOUND;
+		i++)
 	{
+	//動的配列に追加する
 		adapters.push_back(tmpAdapter);
 	}
 
-	//Direct3Dデバイスの初期化
-	D3D_FEATURE_LEVEL featureLevel;
-	for (auto lv : levels)
+	//妥当なアダプタを選別する
+	for (size_t i = 0; i < adapters.size(); i++)
 	{
-		if (D3D12CreateDevice(tmpAdapter.Get(), lv, IID_PPV_ARGS(device.ReleaseAndGetAddressOf())) == S_OK)
+		DXGI_ADAPTER_DESC3 adapterDesc;
+		//アダプターの情報を収録する
+		adapters[i]->GetDesc3(&adapterDesc);
+
+		//ソフトウェアデバイスを回避
+		if (!(adapterDesc.Flags & DXGI_ADAPTER_FLAG3_SOFTWARE))
 		{
-			//生成可能なバージョンが見つかったらループを打ち切り
-			featureLevel = lv;
+			//デバイスを採用してループを抜ける
+			tmpAdapter = adapters[i];
+			break;
+		}
+	}
+
+	D3D_FEATURE_LEVEL featureLevel;
+
+	for (size_t i = 0; i < _countof(levels); i++)
+	{
+		result = D3D12CreateDevice(tmpAdapter, levels[i],
+			IID_PPV_ARGS(&device));
+
+		if (result == S_OK)
+		{
+			//デバイスを生成できた時点でループを抜ける
+			featureLevel = levels[i];
 			break;
 		}
 	}
@@ -277,14 +301,14 @@ void DirectX12Core::BeginDraw()
 	//2描画先変更
 	rtvHandle = rtvHeap->GetCPUDescriptorHandleForHeapStart();
 	rtvHandle.ptr += (static_cast<unsigned long long>(bbIndex)) * device->GetDescriptorHandleIncrementSize(rtvHeapDesc.Type);
-	
+
 	//深度ステンシルビュー用デスクプリタヒープのハンドルを所得
 	D3D12_CPU_DESCRIPTOR_HANDLE dsvHandle = dsvHeap->GetCPUDescriptorHandleForHeapStart();
 	commandList->OMSetRenderTargets(1, &rtvHandle, false, &dsvHandle);
 
 	//3画面クリア
 	commandList->ClearRenderTargetView(rtvHandle, clearColor, 0, nullptr);
-	commandList->ClearDepthStencilView(dsvHandle,D3D12_CLEAR_FLAG_DEPTH,1.0f,0,0,nullptr);
+	commandList->ClearDepthStencilView(dsvHandle, D3D12_CLEAR_FLAG_DEPTH, 1.0f, 0, 0, nullptr);
 	//ビューポート設定
 	viewport.Width = (FLOAT)WindowsApp::GetInstance()->GetWindowWidth();
 	viewport.Height = (FLOAT)WindowsApp::GetInstance()->GetWindowHeight();
@@ -323,7 +347,7 @@ void DirectX12Core::ExecuteCommand()
 	result = commandList->Close();
 	assert(SUCCEEDED(result));
 	//コマンドリストの実行
-	ID3D12CommandList* commandListts[] = { commandList.Get()};
+	ID3D12CommandList* commandListts[] = { commandList.Get() };
 	commandQueue->ExecuteCommandLists(1, commandListts);
 
 	//フリップ
