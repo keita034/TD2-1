@@ -107,9 +107,16 @@ void GameScene::Initialize()
 	goSprite->Initialize();
 	goTexHandle_= TextureManager::GetInstance()->LoadTexture(L"Resources/Go.png");
 
+	secondSprite = std::make_unique<Sprite2D>();
+	secondSprite->Initialize();
+	secondTexHandle_= TextureManager::GetInstance()->LoadTexture(L"Resources/seconds.png");
+	secondTransform.Initialize();
+	secondTransform.translation = {1018,430,0};
+
 	titleHandle = AudioManager::GetInstance()->LoadAudio("Resources/musics/titleBGM.mp3");
 	gameHandle = AudioManager::GetInstance()->LoadAudio("Resources/musics/gameBGM.mp3");
 	clearHandle = AudioManager::GetInstance()->LoadAudio("Resources/musics/clearBGM1.mp3");
+	engineHandle= AudioManager::GetInstance()->LoadAudio("Resources/musics/engine.mp3",0.5);
 //	clearHandle = AudioManager::GetInstance()->LoadAudio("Resources/musics/clearBGM2.mp3");
 
 	AudioManager::GetInstance()->PlayWave(titleHandle,true);
@@ -161,6 +168,7 @@ void GameScene::Update()
 				{
 					endGameFrg = true;
 					AudioManager::GetInstance()->StopWave(gameHandle);
+					AudioManager::GetInstance()->StopWave(engineHandle);
 					endTime = nowTime;
 					ParticleFrg = true;
 					particle_->state();
@@ -188,6 +196,7 @@ void GameScene::Update()
 			{
 				startGameFrg = true;
 				startTime = time(NULL);
+				AudioManager::GetInstance()->PlayWave(engineHandle, true);
 			}
 		}
 		if (endGameFrg)
@@ -321,6 +330,7 @@ void GameScene::Draw()
 			{
 				numSprite[i]->AnimationDraw(numTexHandle_, numTransform[i], 32, 32, Time[i], 1);
 			}
+			secondSprite->Draw(secondTexHandle_,secondTransform);
 		}
 		break;
 	default:

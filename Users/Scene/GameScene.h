@@ -76,6 +76,10 @@ private: // メンバ変数
 	std::unique_ptr<Sprite2D> goSprite;
 	TextureData goTexHandle_;
 
+	std::unique_ptr<Sprite2D> secondSprite;
+	TextureData secondTexHandle_;
+	Transform secondTransform;
+
 	std::unique_ptr<Light> light;
 	EngineMathF::Vector4 lightColor = { 1, 1, 1, 1 };
 
@@ -126,6 +130,7 @@ private: // メンバ変数
 	uint32_t titleHandle = 0;
 	uint32_t gameHandle = 0;
 	uint32_t clearHandle = 0;
+	uint32_t engineHandle = 0;
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>
