@@ -13,8 +13,8 @@ void ResultCamera::Initialize(Transform* worldTransform)
 	worldTransform_.parent = worldTransform;
 
 	//ワールドトランスフォームの初期設定
-	worldTransform_.translation = {1.0f,-2.0f,11.3f};
-	worldTransform_.rotation = { 0.0,245.0f * EngineMathF::Deg2Rad,0.0f };
+	worldTransform_.translation = {2.0f,-2.0f,11.5f};
+	worldTransform_.rotation = { 0.0,250.0f * EngineMathF::Deg2Rad,0.0f };
 
 	viewProjection_ = std::make_unique<Camera>();
 	viewProjection_->SetFar(12000.0f);
