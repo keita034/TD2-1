@@ -474,9 +474,9 @@ void RailCamera::SpeedDown()
 {
 	speed -= 0.5f;
 
-	if (speed <= 0)
+	if (speed <= 0.8)
 	{
-		speed = 0.5f;
+		speed = 0.8f;
 	}
 }
 
