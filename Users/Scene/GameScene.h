@@ -70,6 +70,11 @@ private: // メンバ変数
 	std::array<Transform, 3> numTransform;
 	std::unique_ptr<Sprite2D> numSprite[3];
 
+	Transform startCountDownTransform;
+	std::unique_ptr<Sprite2D> startCountDownSprite;
+
+	std::unique_ptr<Sprite2D> goSprite;
+	TextureData goTexHandle_;
 
 	std::unique_ptr<Light> light;
 	EngineMathF::Vector4 lightColor = { 1, 1, 1, 1 };

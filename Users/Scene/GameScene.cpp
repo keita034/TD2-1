@@ -88,6 +88,7 @@ void GameScene::Initialize()
 		numSprite[i] = std::make_unique<Sprite2D>();
 		numSprite[i]->Initialize();
 	}
+
 	numTransform[0].Initialize();
 	numTransform[1].Initialize();
 	numTransform[2].Initialize();
@@ -95,6 +96,16 @@ void GameScene::Initialize()
 	numTransform[0].translation = { 570,55,0 };
 	numTransform[1].translation = { 640,55,0 };
 	numTransform[2].translation = { 710,55,0 };
+
+	startCountDownSprite = std::make_unique<Sprite2D>();
+	startCountDownSprite->Initialize();
+
+	startCountDownTransform.Initialize();
+	startCountDownTransform.translation = {640,360,0};
+
+	goSprite = std::make_unique<Sprite2D>();
+	goSprite->Initialize();
+	goTexHandle_= TextureManager::GetInstance()->LoadTexture(L"Resources/Go.png");
 
 	titleHandle = AudioManager::GetInstance()->LoadAudio("Resources/musics/titleBGM.mp3");
 	gameHandle = AudioManager::GetInstance()->LoadAudio("Resources/musics/gameBGM.mp3");
@@ -128,7 +139,7 @@ void GameScene::Update()
 			objectManager_->Reset();
 			startTime = time(NULL);
 			AudioManager::GetInstance()->PlayWave(gameHandle, true);
-
+			nowTime = 0;
 		}
 		break;
 	case Scene::game:
@@ -173,7 +184,7 @@ void GameScene::Update()
 		}
 		else if (startGameFrg == false)
 		{
-			if (3 <= time(NULL) - startTime)
+			if (4 <= time(NULL) - startTime)
 			{
 				startGameFrg = true;
 				startTime = time(NULL);
@@ -270,6 +281,31 @@ void GameScene::Draw()
 			for (int i = 0; i < 3; i++)
 			{
 				numSprite[i]->AnimationDraw(numTexHandle_, numTransform[i], 32, 32, Time[i], 1);
+			}
+		}
+		if (startGameFrg == false)
+		{
+			if (3 == time(NULL) - startTime)
+			{
+				float a = 1;
+				startCountDownSprite->AnimationDraw(numTexHandle_,startCountDownTransform,32,32,a, 1);
+			}
+			if (2 == time(NULL) - startTime)
+			{
+				float a = 2;
+				startCountDownSprite->AnimationDraw(numTexHandle_, startCountDownTransform, 32, 32, a, 1);
+			}
+			if (1 == time(NULL) - startTime)
+			{
+				float a = 3;
+				startCountDownSprite->AnimationDraw(numTexHandle_, startCountDownTransform, 32, 32, a, 1);
+			}
+		}
+		else
+		{
+			if (1 >= time(NULL) - startTime)
+			{
+				goSprite->Draw(goTexHandle_, startCountDownTransform);
 			}
 		}
 		break;
