@@ -96,7 +96,12 @@ void GameScene::Initialize()
 	numTransform[1].translation = { 640,55,0 };
 	numTransform[2].translation = { 710,55,0 };
 
+	titleHandle = AudioManager::GetInstance()->LoadAudio("Resources/musics/titleBGM.mp3");
+	gameHandle = AudioManager::GetInstance()->LoadAudio("Resources/musics/gameBGM.mp3");
+	clearHandle = AudioManager::GetInstance()->LoadAudio("Resources/musics/clearBGM1.mp3");
+//	clearHandle = AudioManager::GetInstance()->LoadAudio("Resources/musics/clearBGM2.mp3");
 
+	AudioManager::GetInstance()->PlayWave(titleHandle,true);
 }
 
 void GameScene::Update()
@@ -111,6 +116,7 @@ void GameScene::Update()
 		{
 			titleParticleFrg = true;
 			particle_->state();
+			AudioManager::GetInstance()->StopWave(titleHandle);
 		}
 		if (particle_->GetNumTimer() >= 225 && titleParticleFrg == true)
 		{
@@ -121,6 +127,8 @@ void GameScene::Update()
 			player_->Update();
 			objectManager_->Reset();
 			startTime = time(NULL);
+			AudioManager::GetInstance()->PlayWave(gameHandle, true);
+
 		}
 		break;
 	case Scene::game:
@@ -141,6 +149,7 @@ void GameScene::Update()
 				if (railCamera_->GetLap() >= 1)
 				{
 					endGameFrg = true;
+					AudioManager::GetInstance()->StopWave(gameHandle);
 					endTime = nowTime;
 					ParticleFrg = true;
 					particle_->state();
@@ -175,8 +184,8 @@ void GameScene::Update()
 			if (particle_->GetNumTimer() >= 225)
 			{
 				viewProjection = resultCamera_->GetViewProjection();
-
 				scene = Scene::result;
+				AudioManager::GetInstance()->PlayWave(clearHandle, true);
 				endGameFrg = false;
 				startGameFrg = false;
 				railCamera_->setSpeed(1.0f);
@@ -192,11 +201,13 @@ void GameScene::Update()
 		if (input_->TriggerPush(DIK_SPACE))
 		{
 			resultParticleFrg = true;
+			AudioManager::GetInstance()->StopWave(clearHandle);
 			particle_->state();
 		}
 		if (particle_->GetNumTimer() >= 225 && resultParticleFrg == true)
 		{
 			scene = Scene::title;
+			AudioManager::GetInstance()->PlayWave(titleHandle, true);
 			resultParticleFrg = false;
 		}
 		break;

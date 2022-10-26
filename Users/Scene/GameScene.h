@@ -7,6 +7,7 @@
 #include "Transform.h"
 #include "Particle.h"
 #include "TextureManager.h"
+#include"AudioManager.h"
 
 #include"Users/stage.h"
 #include"Users/RailCamera.h"
@@ -116,6 +117,10 @@ private: // メンバ変数
 
 	bool endGameFrg = false;
 
+	//サウンド
+	uint32_t titleHandle = 0;
+	uint32_t gameHandle = 0;
+	uint32_t clearHandle = 0;
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>
