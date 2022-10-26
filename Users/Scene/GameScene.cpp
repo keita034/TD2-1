@@ -83,13 +83,20 @@ void GameScene::Initialize()
 	viewProjection = resultCamera_->GetViewProjection();
 
 	numTexHandle_ = TextureManager::GetInstance()->LoadTexture(L"Resources/Number.png");
-	numSprite = std::make_unique<Sprite2D>();
-	numSprite->Initialize();
-
+	for (int i = 0; i < 3; i++)
+	{
+		numSprite[i] = std::make_unique<Sprite2D>();
+		numSprite[i]->Initialize();
+	}
 	numTransform[0].Initialize();
-	numTransform[0].translation = { 300,100,0 };
 	numTransform[1].Initialize();
 	numTransform[2].Initialize();
+
+	numTransform[0].translation = { 570,55,0 };
+	numTransform[1].translation = { 640,55,0 };
+	numTransform[2].translation = { 710,55,0 };
+
+
 }
 
 void GameScene::Update()
@@ -135,6 +142,8 @@ void GameScene::Update()
 				{
 					endGameFrg = true;
 					endTime = nowTime;
+					ParticleFrg = true;
+					particle_->state();
 				}
 				if (railCamera_->GetIsRapReset())
 				{
@@ -163,11 +172,6 @@ void GameScene::Update()
 		}
 		if (endGameFrg)
 		{
-			if (3 <= time(NULL) - endTime)
-			{
-				ParticleFrg = true;
-				particle_->state();
-			}
 			if (particle_->GetNumTimer() >= 225)
 			{
 				viewProjection = resultCamera_->GetViewProjection();
@@ -237,6 +241,18 @@ void GameScene::Draw()
 		}
 		transform_.TransUpdate(viewProjection);
 		sprite_->Draw(textureHandle_, transform_);
+
+		{
+			float Time[3] = {
+			 GetHundredDigit(nowTime)
+			,GetTenDigit(nowTime)
+			,GetOneDigit(nowTime) };
+
+			for (int i = 0; i < 3; i++)
+			{
+				numSprite[i]->AnimationDraw(numTexHandle_, numTransform[i], 32, 32, Time[i], 1);
+			}
+		}
 		break;
 	case GameScene::Scene::result:
 		resultScene_->SpriteDraw();
@@ -245,11 +261,6 @@ void GameScene::Draw()
 		break;
 	}
 	particle_->Draw();
-	{
-		float f = 7;
-
-		numSprite->AnimationDraw(numTexHandle_, numTransform[0], 32, 32, f, 1);
-	}
 }
 
 GameScene* GameScene::GetInstance()
