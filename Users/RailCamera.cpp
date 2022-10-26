@@ -255,7 +255,7 @@ bool RailCamera::Update(bool GetCrashFlag, int frequencyInvocationDoor)
 	}
 	else
 	{
-		speed = 0.5f;
+		speed = 0.8f;
 
 		switch (currentSide)
 		{
