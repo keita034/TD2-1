@@ -2,6 +2,35 @@
 #include "TextureManager.h"
 #include <cassert>
 
+int GetHundredDigit(int nowTime)
+{
+	if (nowTime > 1000)
+	{
+		int a = nowTime % 1000;
+		return a / 100;
+	}
+	return nowTime / 100;
+}
+int GetTenDigit(int nowTime)
+{
+	if (nowTime > 100)
+	{
+		int a = nowTime % 100;
+		return a / 10;
+	}
+	return nowTime / 10;
+}
+
+int GetOneDigit(int nowTime)
+{
+	if (nowTime > 10)
+	{
+		int a = nowTime % 10;
+		return a;
+	}
+	return nowTime;
+}
+
 GameScene::GameScene()
 {
 }
