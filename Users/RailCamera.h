@@ -51,7 +51,7 @@ public:
 
 	void setTranslation(EngineMathF::Vector3 translation);
 
-	void setSpeed(float speed);
+	void setSpeed(float speed_);
 
 	bool GetIsRapReset();
 

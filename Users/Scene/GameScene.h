@@ -31,15 +31,6 @@ class GameScene
 {
 
 public: // メンバ関数
-  /// <summary>
-  /// コンストクラタ
-  /// </summary>
-	GameScene();
-
-	/// <summary>
-	/// デストラクタ
-	/// </summary>
-	~GameScene();
 
 	/// <summary>
 	/// 初期化
@@ -125,6 +116,7 @@ private: // メンバ変数
 	bool startGameFrg = false;
 
 	bool endGameFrg = false;
+	char PADING[2]{};
 
 	//サウンド
 	uint32_t titleHandle = 0;
@@ -135,4 +127,18 @@ private: // メンバ変数
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>
+
+	  /// <summary>
+	 /// コンストクラタ
+	 /// </summary>
+	GameScene();
+
+	/// <summary>
+	/// デストラクタ
+	/// </summary>
+	~GameScene();
+
+	//コピーコンストラクタ・代入演算子削除
+	GameScene& operator=(const GameScene&) = delete;
+	GameScene(const GameScene&) = delete;
 };

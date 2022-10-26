@@ -28,7 +28,7 @@ void door::Initialize(EngineMathF::Vector3 trans, EngineMathF::Vector3 Rot)
 
 	input_ = Input::GetInstance();
 
-	door1worldTransform_.translation = EngineMathF::Vector3(trans.x, trans.y, trans.z + 0.3);
+	door1worldTransform_.translation = EngineMathF::Vector3(trans.x, trans.y, trans.z + 0.3f);
 	door2worldTransform_.translation = trans;
 	door3worldTransform_.translation = trans;
 
@@ -85,7 +85,7 @@ UINT door::GetMashNum()
 void door::Reset(EngineMathF::Vector3 trans)
 {
 	mashFlag_ = false;
-	door1worldTransform_.translation = EngineMathF::Vector3(trans.x, trans.y, trans.z + 0.3);
+	door1worldTransform_.translation = EngineMathF::Vector3(trans.x, trans.y, trans.z + 0.3f);
 	door2worldTransform_.translation = trans;
 	door3worldTransform_.translation = trans;
 }

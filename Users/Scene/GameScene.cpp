@@ -145,7 +145,7 @@ void GameScene::Update()
 			railCamera_->reset();
 			player_->Update();
 			objectManager_->Reset();
-			startTime = time(NULL);
+			startTime = static_cast<int>(time(NULL));
 			AudioManager::GetInstance()->PlayWave(gameHandle, true);
 			nowTime = 0;
 		}
@@ -190,14 +190,14 @@ void GameScene::Update()
 					isActivationDoor = false;
 				}
 			}
-			nowTime = time(NULL) - startTime;
+			nowTime = static_cast<int>(time(NULL)) - startTime;
 		}
 		else if (startGameFrg == false)
 		{
 			if (4 <= time(NULL) - startTime)
 			{
 				startGameFrg = true;
-				startTime = time(NULL);
+				startTime = static_cast<int>(time(NULL));
 				AudioManager::GetInstance()->PlayWave(engineHandle, true);
 				AudioManager::GetInstance()->PlayWave(startAndEndHandole);
 			}
@@ -242,6 +242,8 @@ void GameScene::Update()
 			numTransform[2].translation = { 710,55,0 };
 		}
 		break;
+	case Scene::door:
+		break;
 	default:
 		break;
 	}
@@ -261,6 +263,8 @@ void GameScene::Draw()
 		speedUpChance_->Draw(viewProjection);
 		break;
 	case GameScene::Scene::result:
+		break;
+	case GameScene::Scene::door:
 		break;
 	default:
 		break;
@@ -286,13 +290,13 @@ void GameScene::Draw()
 
 		{
 			float Time[3] = {
-			 GetHundredDigit(nowTime)
-			,GetTenDigit(nowTime)
-			,GetOneDigit(nowTime) };
+			static_cast<float>(GetHundredDigit(nowTime))
+			,static_cast<float>(GetTenDigit(nowTime))
+			,static_cast<float>(GetOneDigit(nowTime)) };
 
 			for (int i = 0; i < 3; i++)
 			{
-				numSprite[i]->AnimationDraw(numTexHandle_, numTransform[i], 32, 32, Time[i], 1);
+				numSprite[i]->AnimationDraw(numTexHandle_, numTransform[static_cast<std::array<Transform,3>::size_type> (i)], 32, 32, Time[i], 1);
 			}
 		}
 		if (startGameFrg == false)
@@ -325,16 +329,18 @@ void GameScene::Draw()
 		resultScene_->SpriteDraw();
 		{
 			float Time[3] = {
-				 GetHundredDigit(endTime)
-				,GetTenDigit(endTime)
-				,GetOneDigit(endTime) };
+				 static_cast<float>(GetHundredDigit(endTime))
+				,static_cast<float>(GetTenDigit(endTime))
+				,static_cast<float>(GetOneDigit(endTime)) };
 
 			for (int i = 0; i < 3; i++)
 			{
-				numSprite[i]->AnimationDraw(numTexHandle_, numTransform[i], 32, 32, Time[i], 1);
+				numSprite[i]->AnimationDraw(numTexHandle_, numTransform[static_cast<std::array<Transform, 3>::size_type> (i)], 32, 32, Time[i], 1);
 			}
 			secondSprite->Draw(secondTexHandle_,secondTransform);
 		}
+		break;
+	case GameScene::Scene::door:
 		break;
 	default:
 		break;

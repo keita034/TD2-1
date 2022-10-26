@@ -93,5 +93,7 @@ private:
 
 	//ƒTƒEƒ“ƒh
 	uint32_t confusionHandle = 0;
+
+	char PDDING[4]{};
 };
 

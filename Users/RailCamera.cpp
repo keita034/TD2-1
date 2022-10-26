@@ -425,9 +425,9 @@ int RailCamera::GetLap()
 {
 	return lap;
 }
-void RailCamera::setSpeed(float speed)
+void RailCamera::setSpeed(float speed_)
 {
-	this->speed = speed;
+	speed = speed_;
 }
 bool RailCamera::GetIsRapReset()
 {
