@@ -62,7 +62,7 @@ public:
 	bool flag = false;
 	bool flag2 = false;
 	bool flag3 = false;
-	char PADING[5];
+	char PADING[5]{};
 
 private:
 	// テクスチャハンドル

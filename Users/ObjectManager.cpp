@@ -27,7 +27,7 @@ void ObjectManager::Reset()
 	objects_.push_back(std::move(object));
 
 	//ìπÇ”Ç≥Ç¨
-	for (size_t i = 0; i < 10; i++)
+	for (float i = 0; i < 10; i++)
 	{
 		object = std::make_unique<Object>();
 		object->Initialize({ 10.0f - i * 2.0f, -1.5f, 400.0f }, { 0.0f, 0.0f, 0.0f }, 1.0f, objectModel_.get());
@@ -36,7 +36,7 @@ void ObjectManager::Reset()
 	}
 
 	//ìπÇ”Ç≥Ç¨
-	for (size_t i = 0; i < 10; i++)
+	for (float i = 0; i < 10; i++)
 	{
 		object = std::make_unique<Object>();
 		object->Initialize({ 10.0f - i * 2.0f, -1.5f, 500.0f }, { 0.0f, 0.0f, 0.0f }, 1.0f, objectModel_.get());
@@ -48,9 +48,9 @@ void ObjectManager::Reset()
 
 	//óºòeç«Ç¨
 
-	for (size_t i = 0; i < 3; i++)
+	for (float i = 0; i < 3; i++)
 	{
-		for (size_t j = 0; j < 8; j++)
+		for (float j = 0; j < 8; j++)
 		{
 			if (j != 3 && j != 4)
 			{
@@ -62,7 +62,7 @@ void ObjectManager::Reset()
 	}
 
 	//ìπÇ”Ç≥Ç¨
-	for (size_t j = 0; j < 9; j++)
+	for (float j = 0; j < 9; j++)
 	{
 
 		object = std::make_unique<Object>();
@@ -73,11 +73,11 @@ void ObjectManager::Reset()
 	//3å¬ñ⁄ÇÃìπ
 
 	//ìπÇ”Ç≥Ç¨
-	for (size_t k = 0; k < 3; k++)
+	for (float k = 0; k < 3; k++)
 	{
-		for (size_t j = 0; j < 7; j++)
+		for (float j = 0; j < 7; j++)
 		{
-			for (size_t i = 0; i < 5; i++)
+			for (float i = 0; i < 5; i++)
 			{
 				object = std::make_unique<Object>();
 				object->Initialize({ (490.0f + i * 1.75f) + j * 1.0f, 2.5f - 2.0f * k, (1200.0f + i * 1.0f) - j * 1.75f }, { 0.0f, 60.0f * EngineMathF::Deg2Rad, 0.0f }, 1.0f, objectModel_.get());
@@ -86,11 +86,11 @@ void ObjectManager::Reset()
 		}
 	}
 
-	for (size_t k = 0; k < 3; k++)
+	for (float k = 0; k < 3; k++)
 	{
-		for (size_t j = 0; j < 7; j++)
+		for (float j = 0; j < 7; j++)
 		{
-			for (size_t i = 0; i < 5; i++)
+			for (float i = 0; i < 5; i++)
 			{
 				object = std::make_unique<Object>();
 				object->Initialize({ (653.5f + i * 1.75f) + j * 1.0f, 2.5f - 2.0f * k, (900.0f + i * 1.0f) - j * 1.75f }, { 0.0f, 60.0f * EngineMathF::Deg2Rad, 0.0f }, 1.0f, objectModel_.get());
@@ -102,7 +102,7 @@ void ObjectManager::Reset()
 	//4å¬ñ⁄ÇÃìπ
 
 	//êˆÇÈ
-	for (size_t i = 0; i < 4; i++)
+	for (float i = 0; i < 4; i++)
 	{
 		if (i != 1 && i != 2)
 		{
@@ -122,7 +122,7 @@ void ObjectManager::Reset()
 	}
 
 	//êˆÇÈ
-	for (size_t i = 0; i < 4; i++)
+	for (float i = 0; i < 4; i++)
 	{
 		if (i != 1 && i != 2)
 		{
@@ -142,7 +142,7 @@ void ObjectManager::Reset()
 	}
 
 	//ìπÇ”Ç≥Ç¨
-	for (size_t i = 0; i < 10; i++)
+	for (float i = 0; i < 10; i++)
 	{
 		object = std::make_unique<Object>();
 		object->Initialize({ 740.0f + i * 2.0f, -1.5f, 70.0f }, { 0.0f, 0.0f, 0.0f }, 1.0f, objectModel_.get());
@@ -153,7 +153,7 @@ void ObjectManager::Reset()
 	//5å¬ñ⁄ÇÃìπ
 
 	//êˆÇÈ
-	for (size_t i = 0; i < 8; i++)
+	for (float i = 0; i < 8; i++)
 	{
 		if (i != 1 && i != 2 && i != 5 && i != 6)
 		{
@@ -173,11 +173,11 @@ void ObjectManager::Reset()
 	}
 
 	//ìπÇ”Ç≥Ç¨
-	for (size_t k = 0; k < 3; k++)
+	for (float k = 0; k < 3; k++)
 	{
-		for (size_t j = 0; j < 7; j++)
+		for (float j = 0; j < 7; j++)
 		{
-			for (size_t i = 0; i < 5; i++)
+			for (float i = 0; i < 5; i++)
 			{
 				object = std::make_unique<Object>();
 				object->Initialize({ (586.0f - i * 1.75f) - j * 1.0f, 2.5f - 2.0f * k, (-284.0f + i * 1.0f) - j * 1.75f }, { 0.0f, 30.0f * EngineMathF::Deg2Rad, 0.0f }, 1.0f, objectModel_.get());
@@ -186,11 +186,11 @@ void ObjectManager::Reset()
 		}
 	}
 
-	for (size_t k = 0; k < 3; k++)
+	for (float k = 0; k < 3; k++)
 	{
-		for (size_t j = 0; j < 7; j++)
+		for (float j = 0; j < 7; j++)
 		{
-			for (size_t i = 0; i < 5; i++)
+			for (float i = 0; i < 5; i++)
 			{
 				object = std::make_unique<Object>();
 				object->Initialize({ (506.0f - i * 1.75f) - j * 1.0f, 2.5f - 2.0f * k, (-439.0f + i * 1.0f) - j * 1.75f }, { 0.0f, 30.0f * EngineMathF::Deg2Rad, 0.0f }, 1.0f, objectModel_.get());
@@ -202,7 +202,7 @@ void ObjectManager::Reset()
 	//6å¬ñ⁄ÇÃìπ
 
 	//ìπÇ”Ç≥Ç¨
-	for (size_t i = 0; i < 9; i++)
+	for (float i = 0; i < 9; i++)
 	{
 		object = std::make_unique<Object>();
 		object->Initialize({ 50.0f + i * 1.75f, -1.5f, -100.0f + i * 1.0f }, { 0.0f,60.0f * EngineMathF::Deg2Rad, 0.0f }, 1.0f, objectModel_.get());

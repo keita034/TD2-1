@@ -7,6 +7,10 @@
 class Object
 {
 public:
+
+	Object() = default;
+	~Object() = default;
+
 	/// <summary>
 	/// 初期化
 	/// </summary>
@@ -33,7 +37,13 @@ public:
 
 private:
 	bool IsDeath;
+	char PADING[3]{};
 	SPHERE collider_;
+	char PADING2[4]{};
 	objModel* model_;
 	std::unique_ptr<Transform> worldTransform_;
+
+	//コピーコンストラクタ・代入演算子削除
+	Object& operator=(const Object&) = delete;
+	Object(const Object&) = delete;
 };

@@ -39,6 +39,7 @@ private:
 	void Mash(EngineMathF::Vector3 vector);
 
 	bool mashFlag_ = false;
+	char PADING[3]{};
 	UINT mashNum_ = 0;
 
 	Transform door1worldTransform_;

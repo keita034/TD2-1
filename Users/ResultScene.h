@@ -11,6 +11,9 @@ private:
 
 public:
 
+	ResultScene() = default;
+	~ResultScene() = default;
+
 	/// <summary>
 	/// 初期化
 	/// </summary>
@@ -25,5 +28,9 @@ public:
 	/// 描画
 	/// </summary>
 	void SpriteDraw();
+
+	//コピーコンストラクタ・代入演算子削除
+	ResultScene& operator=(const ResultScene&) = delete;
+	ResultScene(const ResultScene&) = delete;
 };
 

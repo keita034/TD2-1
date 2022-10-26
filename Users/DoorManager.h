@@ -5,6 +5,10 @@
 class DoorManager
 {
 public:
+
+	DoorManager() = default;
+	~DoorManager() = default;
+
 	/// <summary>
 	/// 初期化
 	/// </summary>
@@ -39,5 +43,10 @@ private:
 	TextureData textureHandle_;
 	Transform transform_;
 	std::unique_ptr<Sprite2D> sprite_;
+
+	//コピーコンストラクタ・代入演算子削除
+	DoorManager& operator=(const DoorManager&) = delete;
+	DoorManager(const DoorManager&) = delete;
+
 };
 

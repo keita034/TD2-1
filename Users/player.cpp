@@ -66,8 +66,6 @@ void Player::Update()
 
 		//ˆÚ“®
 		Move();
-		//‚µ‚á‚ª‚Ş
-		Squat();
 		//ù‰ñ
 		Rotate();
 

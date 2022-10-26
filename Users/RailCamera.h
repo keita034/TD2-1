@@ -81,11 +81,11 @@ private:
 	int lap = 0;
 
 	bool IsLapReset = false;
-
+	char PADING[3]{};
 	void Move();
 
 	float invocationTrnsDoor[4] = {};
-
+	char PADING2[4]{};
 	//コピーコンストラクタ・代入演算子削除
 	RailCamera& operator=(const RailCamera&) = delete;
 	RailCamera(const RailCamera&) = delete;
