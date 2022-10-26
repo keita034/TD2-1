@@ -5,6 +5,7 @@
 #include"Input.h"
 #include"EngineMathUtility.h"
 #include"CollisionPrimitive.h"
+#include"AudioManager.h"
 
 class Player
 {
@@ -89,5 +90,8 @@ private:
 	//コピーコンストラクタ・代入演算子削除
 	Player& operator=(const Player&) = delete;
 	Player(const Player&) = delete;
+
+	//サウンド
+	uint32_t confusionHandle = 0;
 };
 

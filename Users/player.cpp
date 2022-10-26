@@ -29,7 +29,7 @@ void Player::OnCollision()
 	crashFlag = true;
 	crashTime = 70;
 	oldRot.y = worldTransform_.rotation.y;
-
+	AudioManager::GetInstance()->PlayWave(confusionHandle);
 }
 
 bool Player::GetCrashFlag()
@@ -47,6 +47,8 @@ void Player::Initialize(Transform* worldTransform)
 	worldTransform_.Initialize();
 
 	collider_.center = EngineMathF::GetWorldPosition(worldTransform_);
+
+	confusionHandle = AudioManager::GetInstance()->LoadAudio("Resources/musics/confusion.mp3");
 
 	//“–‚½‚è”»’è‚Ì‘å‚«‚³
 	collider_.size = {
