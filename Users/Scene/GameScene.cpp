@@ -21,7 +21,7 @@ void GameScene::Initialize()
 	sprite_ = std::make_unique<Sprite2D>();
 	textureHandle_ = TextureManager::GetInstance()->LoadTexture(L"Resources/gamescene.png");
 	transform_.Initialize();
-	transform_.translation = { 0,0,0 };
+	transform_.translation = { 640,360,0 };
 	sprite_->Initialize();
 
 	player_ = std::make_unique<Player>();
