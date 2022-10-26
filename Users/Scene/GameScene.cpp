@@ -117,6 +117,7 @@ void GameScene::Initialize()
 	gameHandle = AudioManager::GetInstance()->LoadAudio("Resources/musics/gameBGM.mp3");
 	clearHandle = AudioManager::GetInstance()->LoadAudio("Resources/musics/clearBGM1.mp3");
 	engineHandle= AudioManager::GetInstance()->LoadAudio("Resources/musics/engine.mp3",0.5);
+	startAndEndHandole= AudioManager::GetInstance()->LoadAudio("Resources/musics/StartAndEnd.mp3");
 //	clearHandle = AudioManager::GetInstance()->LoadAudio("Resources/musics/clearBGM2.mp3");
 
 	AudioManager::GetInstance()->PlayWave(titleHandle,true);
@@ -169,6 +170,7 @@ void GameScene::Update()
 					endGameFrg = true;
 					AudioManager::GetInstance()->StopWave(gameHandle);
 					AudioManager::GetInstance()->StopWave(engineHandle);
+					AudioManager::GetInstance()->PlayWave(startAndEndHandole);
 					endTime = nowTime;
 					ParticleFrg = true;
 					particle_->state();
@@ -197,6 +199,7 @@ void GameScene::Update()
 				startGameFrg = true;
 				startTime = time(NULL);
 				AudioManager::GetInstance()->PlayWave(engineHandle, true);
+				AudioManager::GetInstance()->PlayWave(startAndEndHandole);
 			}
 		}
 		if (endGameFrg)

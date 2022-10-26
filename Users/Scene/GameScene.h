@@ -131,6 +131,7 @@ private: // メンバ変数
 	uint32_t gameHandle = 0;
 	uint32_t clearHandle = 0;
 	uint32_t engineHandle = 0;
+	uint32_t startAndEndHandole = 0;
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>
