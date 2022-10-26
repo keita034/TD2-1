@@ -190,6 +190,10 @@ void GameScene::Update()
 				startGameFrg = false;
 				railCamera_->setSpeed(1.0f);
 				player_->EndGameReset();
+
+				numTransform[0].translation = { 830,400,0 };
+				numTransform[1].translation = { 900,400,0 };
+				numTransform[2].translation = { 970,400,0 };
 			}
 		}
 		break;
@@ -209,6 +213,10 @@ void GameScene::Update()
 			scene = Scene::title;
 			AudioManager::GetInstance()->PlayWave(titleHandle, true);
 			resultParticleFrg = false;
+
+			numTransform[0].translation = { 570,55,0 };
+			numTransform[1].translation = { 640,55,0 };
+			numTransform[2].translation = { 710,55,0 };
 		}
 		break;
 	default:
@@ -267,6 +275,17 @@ void GameScene::Draw()
 		break;
 	case GameScene::Scene::result:
 		resultScene_->SpriteDraw();
+		{
+			float Time[3] = {
+				 GetHundredDigit(endTime)
+				,GetTenDigit(endTime)
+				,GetOneDigit(endTime) };
+
+			for (int i = 0; i < 3; i++)
+			{
+				numSprite[i]->AnimationDraw(numTexHandle_, numTransform[i], 32, 32, Time[i], 1);
+			}
+		}
 		break;
 	default:
 		break;
