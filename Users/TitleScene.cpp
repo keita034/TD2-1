@@ -4,13 +4,13 @@ void TitleScene::Initialize()
 {
 	textureHandle_ = TextureManager::GetInstance()->LoadTexture(L"Resources/Rin.png");
 	transform_.Initialize();
-	transform_.translation = { 619,675,0 };
+	transform_.translation = { 883,370,0 };
 	sprite_ = std::make_unique<Sprite2D>();
 	sprite_->Initialize();
 
 	spaceTextureHandle_ = TextureManager::GetInstance()->LoadTexture(L"Resources/PushSpace.png");
 	spaceTransform_.Initialize();
-	spaceTransform_.translation = { 454,100,0 };
+	spaceTransform_.translation = { 640,640,0 };
 	spriteSpace_ = std::make_unique<Sprite2D>();
 	spriteSpace_->Initialize();
 }

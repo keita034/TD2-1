@@ -5,9 +5,9 @@ class ResultScene
 {
 private:
 
-	std::unique_ptr<Sprite2D> spriteSpace_;
-	TextureData spaceTextureData_;
-	Transform spaceTransform;
+	std::unique_ptr<Sprite2D> spriteSpace_[3];
+	TextureData spaceTextureData_[3];
+	Transform spaceTransform[3];
 
 public:
 

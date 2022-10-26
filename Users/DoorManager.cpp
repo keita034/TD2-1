@@ -15,9 +15,9 @@ void DoorManager::Initialize(EngineMathF::Vector3 vector)
 	door_[3]->Initialize(EngineMathF::Vector3(300 * vector_.x, 4.0f, 300 * -vector_.z), EngineMathF::Vector3(0.0f, 330.0f * EngineMathF::Deg2Rad, 0.0f));
 
 
-	textureHandle_ = TextureManager::GetInstance()->LoadTexture(L"Resources/MashSpace.png");
+	textureHandle_ = TextureManager::GetInstance()->LoadTexture(L"Resources/PushSpace.png");
 	transform_.Initialize();
-	transform_.translation = { 440,480,0 };
+	transform_.translation = { 640,640,0 };
 	sprite_= std::make_unique<Sprite2D>();
 	sprite_->Initialize();
 
